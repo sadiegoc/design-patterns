@@ -1,12 +1,25 @@
+/**
+ *  Concrete Builders:
+ *    implementam a interface e sabem como montar cada parte do produto;
+ */
+
 import { MealBuilderProtocol } from '../interfaces/meal-builder-protocol';
 import { MealBox } from './meal-box';
-import { Beans, Beverage, Dessert, Meat, Rice } from './meals';
+import { Beans, Rice } from './meals';
 
 export class VeganDishBuilder implements MealBuilderProtocol {
   private _meal: MealBox = new MealBox();
 
   reset(): this {
     this._meal = new MealBox();
+    return this;
+  }
+
+  makeBeverage(): this {
+    return this;
+  }
+
+  makeDessert(): this {
     return this;
   }
 

@@ -1,3 +1,8 @@
+/**
+ *  Product:
+ *    o objeto final que está sendo construído;
+ */
+
 import { MealCompositeProtocol } from '../interfaces/meal-composite-protocol';
 
 export class MealBox implements MealCompositeProtocol {

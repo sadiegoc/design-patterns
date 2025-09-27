@@ -1,3 +1,8 @@
+/**
+ *  Concrete Builders:
+ *    implementam a interface e sabem como montar cada parte do produto;
+ */
+
 import { MealBuilderProtocol } from '../interfaces/meal-builder-protocol';
 import { MealBox } from './meal-box';
 import { Beans, Beverage, Dessert, Meat, Rice } from './meals';
@@ -28,7 +33,6 @@ export class MainDishBuilder implements MealBuilderProtocol {
     const dessert = new Dessert('Sobremesa', 10);
     this._meal.add(dessert);
     return this;
-    
   }
 
   getMeal(): MealBox {
