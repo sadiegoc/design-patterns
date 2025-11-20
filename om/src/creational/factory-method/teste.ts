@@ -53,6 +53,6 @@ function pedirBebida(factory: BebidaFactory) {
 }
 
 // Testando
-pedirBebida(new CafeFactory());
-pedirBebida(new ChaFactory());
-pedirBebida(new ChocolateQuenteFactory());
+const cafe = pedirBebida(new CafeFactory());
+const cha = pedirBebida(new ChaFactory());
+const chocolateQuente = pedirBebida(new ChocolateQuenteFactory());
