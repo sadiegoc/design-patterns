@@ -6,7 +6,7 @@
     "singleton": "ts-node ./src/creational/singleton/index.ts",
     "builder": "ts-node ./src/creational/builder/index.ts",
     "prototype": "ts-node ./src/creational/prototype/index.ts",
-    "composite": "ts-node ./src/structural/composite/validation-composite.ts"
+    "composite": "ts-node ./src/structural/composite/cesta-basica-mirelly.ts"
   },
   "author": "",
   "license": "ISC",
