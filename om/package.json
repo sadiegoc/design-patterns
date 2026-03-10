@@ -3,13 +3,15 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "bridge": "ts-node ./src/structural/bridge/index.ts",
     "adapter": "ts-node ./src/structural/adapter/index.ts",
     "composite": "ts-node ./src/structural/composite/cesta-basica-mirelly.ts",
+
+    "abstract-factory": "ts-node ./src/creational/abstract-factory/index.ts",
+    "factory-method": "ts-node ./src/creational/factory-method/index.ts",
     "singleton": "ts-node ./src/creational/singleton/index.ts",
     "builder": "ts-node ./src/creational/builder/index.ts",
-    "prototype": "ts-node ./src/creational/prototype/index.ts",
-    "abstract-factory": "ts-node ./src/structural/abstract-factory/index.ts",
-    "factory-method": "ts-node ./src/structural/factory-method/index.ts"
+    "prototype": "ts-node ./src/creational/prototype/index.ts"
   },
   "author": "",
   "license": "ISC",
