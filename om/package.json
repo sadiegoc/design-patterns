@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "facade": "ts-node ./src/structural/facade/index.ts",
     "decorator": "ts-node ./src/structural/decorator/index.ts",
     "bridge": "ts-node ./src/structural/bridge/index.ts",
     "adapter": "ts-node ./src/structural/adapter/index.ts",
