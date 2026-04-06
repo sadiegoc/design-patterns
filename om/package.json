@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "flyweight": "ts-node ./src/structural/flyweight/index.ts",
     "proxy": "ts-node ./src/structural/proxy/index.ts",
     "facade": "ts-node ./src/structural/facade/index.ts",
     "decorator": "ts-node ./src/structural/decorator/index.ts",
