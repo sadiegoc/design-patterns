@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "command": "ts-node ./src/behavioral/command/index.ts",
     "strategy": "ts-node ./src/behavioral/strategy/index.ts",
-
     "flyweight": "ts-node ./src/structural/flyweight/index.ts",
     "proxy": "ts-node ./src/structural/proxy/index.ts",
     "facade": "ts-node ./src/structural/facade/index.ts",
@@ -12,7 +12,6 @@
     "bridge": "ts-node ./src/structural/bridge/index.ts",
     "adapter": "ts-node ./src/structural/adapter/index.ts",
     "composite": "ts-node ./src/structural/composite/cesta-basica-mirelly.ts",
-    
     "singleton": "ts-node ./src/creational/singleton/index.ts",
     "singleton-01": "ts-node ./src/creational/singleton/exercises/01/index.ts",
     "singleton-02": "ts-node ./src/creational/singleton/exercises/02/index.ts",
