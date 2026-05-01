@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "memento": "ts-node ./src/behavioral/memento/index.ts",
     "command": "ts-node ./src/behavioral/command/index.ts",
     "strategy": "ts-node ./src/behavioral/strategy/index.ts",
     "flyweight": "ts-node ./src/structural/flyweight/index.ts",
