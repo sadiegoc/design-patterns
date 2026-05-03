@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "mediator": "ts-node ./src/behavioral/mediator/index.ts",
     "state": "ts-node ./src/behavioral/state/index.ts",
     "memento": "ts-node ./src/behavioral/memento/index.ts",
     "command": "ts-node ./src/behavioral/command/index.ts",
