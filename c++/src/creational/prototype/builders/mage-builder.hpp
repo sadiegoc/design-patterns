@@ -5,11 +5,11 @@
 class MageBuilder : public CharacterBuilder {
   public:
     MageBuilder() {
+      type(CharacterType::Mage);
       weapon("staff");
-
       health(400);
       mana(800);
-      strength(200);
+      strength(StrengthLevel::Low);
       defense(700);
       agility(7);
       armor(2);

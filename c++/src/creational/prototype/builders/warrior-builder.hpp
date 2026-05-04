@@ -5,11 +5,11 @@
 class WarriorBuilder : public CharacterBuilder {
   public:
     WarriorBuilder() {
+      type(CharacterType::Warrior);
       weapon("sword");
-
       health(800);
       mana(200);
-      strength(90);
+      strength(StrengthLevel::High);
       defense(90);
       agility(4);
       armor(7);

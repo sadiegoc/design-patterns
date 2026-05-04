@@ -5,11 +5,11 @@
 class AssassinBuilder : public CharacterBuilder {
   public:
     AssassinBuilder() {
+      type(CharacterType::Assassin);
       weapon("daggers");
-
       health(600);
       mana(0);
-      strength(600);
+      strength(StrengthLevel::Medium);
       defense(400);
       agility(10);
       armor(2);

@@ -10,13 +10,13 @@ int main() {
 
   CharacterLoader::load(registry);
 
-  auto warriors = registry.spawnMany("warrior", 10, [](Character& c, int i) {
+  auto characters = registry.spawnMany(CharacterType::Warrior, 10, [](Character& c, int i) {
     c.id = std::to_string(i + 1);
-    c.name = "Warrior " + std::to_string(i + 1);
+    c.name = toString(CharacterType::Warrior) + " " + std::to_string(i + 1);
   });
 
-  for (int i = 0; i < 10; i++) {
-    warriors[i].show();
+  for (const auto& character : characters) {
+    character.show();
     std::cout << std::endl;
   }
 

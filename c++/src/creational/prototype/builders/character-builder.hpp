@@ -13,6 +13,11 @@ class CharacterBuilder {
       return character;
     }
 
+    CharacterBuilder& type(CharacterType type) {
+      character.type = type;
+      return *this;
+    }
+
     CharacterBuilder& id(const std::string& id) {
       character.id = id;
       return *this;
@@ -38,8 +43,8 @@ class CharacterBuilder {
       return *this;
     }
 
-    CharacterBuilder& strength(int strength) {
-      character.strength = strength;
+    CharacterBuilder& strength(StrengthLevel strength) {
+      character.strength.value = strength;
       return *this;
     }
 
