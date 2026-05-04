@@ -1,6 +1,6 @@
 #pragma once
 
-#include "./character.hpp"
+#include "../character.hpp"
 
 class CharacterBuilder {
   private:
