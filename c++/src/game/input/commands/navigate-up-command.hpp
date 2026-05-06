@@ -2,11 +2,16 @@
 
 #include "command.hpp"
 
+#include "../../ui/menu.hpp"
+
 class NavigateUpCommand : public Command {
+  private:
+    Menu& menu;
+
   public:
-    NavigateUpCommand() {}
+    NavigateUpCommand(Menu& m) : menu(m) {}
 
     void execute() override {
-      std::cout << "Navigate Up" << std::endl;
+      menu.moveUp();
     }
 };

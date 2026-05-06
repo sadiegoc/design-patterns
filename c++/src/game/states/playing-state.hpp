@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../core/types/state-fn.hpp"
+#include "../core/events/event-bus.hpp"
 
 #include "game-state.hpp"
 #include "../entities/player.hpp"
@@ -19,11 +19,11 @@ class PlayingState : public GameState {
   private:
     Player& player;
     InputHandler input;
-    ChangeStateFn changeState;
+    EventBus& bus;
 
   public:
-    PlayingState(Player& p, ChangeStateFn fn) : player(p), changeState(fn) {
-      input.bind(Key::KEY_P, std::make_unique<GamePauseCommand>(changeState));
+    PlayingState(Player& p, EventBus& b) : player(p), bus(b) {
+      input.bind(Key::KEY_P, std::make_unique<GamePauseCommand>(bus));
       input.bind(Key::KEY_W, std::make_unique<MoveUpCommand>(player));
       input.bind(Key::KEY_S, std::make_unique<MoveDownCommand>(player));
       input.bind(Key::KEY_A, std::make_unique<MoveLeftCommand>(player));

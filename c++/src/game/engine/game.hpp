@@ -4,10 +4,10 @@
 
 #include "game-template.hpp"
 
-#include "../core/types/exit-fn.hpp"
-#include "../core/types/state-fn.hpp"
+#include "../core/events/event-bus.hpp"
 
 #include "../entities/player.hpp"
+#include "../ui/menu.hpp"
 
 #include "../states/state-factory.hpp"
 #include "../states/game-state.hpp"
@@ -19,29 +19,41 @@
 class Game : public GameTemplate {
   private:
     CharacterRegistry registry;
+    std::unique_ptr<Menu> menu;
     std::unique_ptr<Player> player;
     std::unique_ptr<GameState> state;
-    ExitGameFn exitFn;
+    EventBus eventBus;
 
   private:
     void init() override {
-      CharacterLoader::load(registry);
+      this->setupPlayer();
+      this->setupMenu();
+      this->setupEventBus();
+      this->setupState();
+    }
 
-      player = std::make_unique<Player>(registry.spawn(CharacterType::Warrior));
-
-      ChangeStateFn changeStateFn = [this](StateType type) {
-        this->changeState(type);
-      };
-
-      exitFn = [this]() {
+    void setupEventBus() {
+      eventBus.subscribe(EventType::Quit, [this](const Event&) {
         this->stop();
-      };
+      });
 
-      state = StateFactory::create(
-        StateType::Menu,
-        *player,
-        changeStateFn,
-        exitFn
+      eventBus.subscribe(EventType::ChangeState, [this](const Event& e) {
+        this->changeState(e.state);
+      });
+    }
+
+    void setupPlayer() {
+      CharacterLoader::load(registry);
+      player = std::make_unique<Player>(registry.spawn(CharacterType::Warrior));
+    }
+
+    void setupState() {
+      this->changeState(StateType::Menu);
+    }
+
+    void setupMenu() {
+      menu = std::make_unique<Menu>(
+        std::vector<std::string>{ "Start", "Options", "Exit" }
       );
     }
 
@@ -50,19 +62,11 @@ class Game : public GameTemplate {
     }
 
     void changeState(StateType type) {
-      ChangeStateFn changeStateFn = [this](StateType t) {
-        this->changeState(t);
-      };
-
-      exitFn = [this]() {
-        this->stop();
-      };
-
       state = StateFactory::create(
         type,
         *player,
-        changeStateFn,
-        exitFn
+        eventBus,
+        *menu
       );
     }
 

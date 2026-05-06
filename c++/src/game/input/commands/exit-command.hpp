@@ -2,15 +2,16 @@
 
 #include "command.hpp"
 
-#include "../../core/types/exit-fn.hpp"
+#include "../../core/events/event-bus.hpp"
 
 class ExitCommand : public Command {
   private:
-    ExitGameFn exitFn;
+    EventBus bus;
+
   public:
-    ExitCommand(ExitGameFn fn) : exitFn(fn) {}
+    ExitCommand(EventBus& b) : bus(b) {}
 
     void execute() override {
-      exitFn();
+      bus.notify({ EventType::Quit });
     }
 };

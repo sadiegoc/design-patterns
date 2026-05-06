@@ -1,16 +1,17 @@
 #pragma once
 
-#include "../../core/types/state-fn.hpp"
 #include "command.hpp"
+
+#include "../../core/events/event-bus.hpp"
 
 class GameStartCommand : public Command {
   private:
-    ChangeStateFn changeState;
+    EventBus bus;
 
   public:
-    GameStartCommand(ChangeStateFn fn) : changeState(fn) {}
+    GameStartCommand(EventBus b) : bus(b) {}
 
     void execute() override {
-      changeState(StateType::Playing);
+      bus.notify({ EventType::ChangeState, StateType::Playing });
     }
 };

@@ -4,10 +4,10 @@
 
 class Player {
   private:
-    Character data;
+    Character player;
 
   public:
-    Player(const Character& c) : data(c) {}
+    Player(const Character& c) : player(c) {}
 
     void moveUp() {
       std::cout << "Player move up" << std::endl;
