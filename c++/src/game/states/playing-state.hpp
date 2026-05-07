@@ -24,19 +24,19 @@ class PlayingState : public GameState {
   public:
     PlayingState(Player& p, EventBus& b) : player(p), bus(b) {
       input.bind(Key::KEY_P, std::make_unique<GamePauseCommand>(bus));
-      input.bind(Key::KEY_W, std::make_unique<MoveUpCommand>(player));
-      input.bind(Key::KEY_S, std::make_unique<MoveDownCommand>(player));
-      input.bind(Key::KEY_A, std::make_unique<MoveLeftCommand>(player));
-      input.bind(Key::KEY_D, std::make_unique<MoveRightCommand>(player));
+      input.bind(Key::KEY_W, std::make_unique<startMoveUpCommand>(player));
+      input.bind(Key::KEY_S, std::make_unique<startMoveDownCommand>(player));
+      input.bind(Key::KEY_A, std::make_unique<startMoveLeftCommand>(player));
+      input.bind(Key::KEY_D, std::make_unique<startMoveRightCommand>(player));
       input.bind(Key::KEY_J, std::make_unique<AttackCommand>(player));
       input.bind(Key::KEY_SPACE, std::make_unique<JumpCommand>(player));
     }
 
-    void handleInput() override {
-      input.handle();
+    void handleInput(float dt) override {
+      input.handle(dt);
     }
 
-    void update() override {
+    void update(float dt) override {
       // Physics, AI
     }
 

@@ -11,7 +11,11 @@ class JumpCommand : public Command {
   public:
     JumpCommand(Player& p) : player(p) {}
 
-    void execute() override {
+    void onPressed() override {
       player.jump();
     }
+
+    void onReleased() override {}
+
+    void onHeld(float dt) override {}
 };

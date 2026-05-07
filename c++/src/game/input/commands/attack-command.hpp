@@ -11,7 +11,11 @@ class AttackCommand : public Command {
   public:
     AttackCommand(Player& p) : player(p) {}
 
-    void execute() override {
+    void onPressed() override {
       player.attack();
     }
+
+    void onReleased() override {}
+
+    void onHeld(float dt) override {}
 };

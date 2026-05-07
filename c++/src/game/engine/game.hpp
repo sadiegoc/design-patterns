@@ -70,12 +70,12 @@ class Game : public GameTemplate {
       );
     }
 
-    void processInput() override {
-      state->handleInput();
+    void processInput(float dt) override {
+      state->handleInput(dt);
     }
 
-    void update() override {
-      state->update();
+    void update(float dt) override {
+      state->update(dt);
     }
 
     void render() override {

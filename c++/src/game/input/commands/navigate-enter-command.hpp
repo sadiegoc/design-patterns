@@ -11,7 +11,11 @@ class NavigateEnterCommand : public Command {
   public:
     NavigateEnterCommand(Menu& m) : menu(m) {}
 
-    void execute() override {
+    void onPressed() override {
       std::cout << menu.getCurrent() << std::endl;
     }
+
+    void onReleased() override {}
+
+    void onHeld(float dt) override {}
 };

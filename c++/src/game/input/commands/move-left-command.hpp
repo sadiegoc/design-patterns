@@ -4,14 +4,20 @@
 
 #include "../../entities/player.hpp"
 
-class MoveLeftCommand : public Command {
+class startMoveLeftCommand : public Command {
   private:
     Player& player;
 
   public:
-    MoveLeftCommand(Player& p) : player(p) {}
+    startMoveLeftCommand(Player& p) : player(p) {}
 
-    void execute() override {
-      player.moveLeft();
+    void onPressed() override {
+      player.startMoveLeft();
     }
+
+    void onReleased() override {
+      player.stopMoveLeft();
+    }
+
+    void onHeld(float dt) override {}
 };

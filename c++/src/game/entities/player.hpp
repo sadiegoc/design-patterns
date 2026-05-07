@@ -9,20 +9,36 @@ class Player {
   public:
     Player(const Character& c) : player(c) {}
 
-    void moveUp() {
-      std::cout << "Player move up" << std::endl;
+    void startMoveUp() {
+      std::cout << "Player start move up" << std::endl;
     }
 
-    void moveDown() {
-      std::cout << "Player move down" << std::endl;
+    void startMoveDown() {
+      std::cout << "Player start move down" << std::endl;
     }
 
-    void moveLeft() {
-      std::cout << "Player move left" << std::endl;
+    void startMoveLeft() {
+      std::cout << "Player start move left" << std::endl;
     }
 
-    void moveRight() {
-      std::cout << "Player move right" << std::endl;
+    void startMoveRight() {
+      std::cout << "Player start move right" << std::endl;
+    }
+
+    void stopMoveUp() {
+      std::cout << "Player stop move up" << std::endl;
+    }
+
+    void stopMoveDown() {
+      std::cout << "Player stop move down" << std::endl;
+    }
+
+    void stopMoveLeft() {
+      std::cout << "Player stop move left" << std::endl;
+    }
+
+    void stopMoveRight() {
+      std::cout << "Player stop move right" << std::endl;
     }
 
     void jump() {

@@ -5,5 +5,7 @@
 class Command {
   public:
     virtual ~Command() = default;
-    virtual void execute() = 0;
+    virtual void onPressed() = 0;
+    virtual void onReleased() = 0;
+    virtual void onHeld(float dt) = 0;
 };

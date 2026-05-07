@@ -6,8 +6,11 @@ class GameTemplate {
       init();
 
       while (isRunning) {
-        processInput();
-        update();
+        // TODO: usar o DT do SFML
+        float dt = 0.016f;
+
+        processInput(dt);
+        update(dt);
         render();
       }
 
@@ -18,8 +21,8 @@ class GameTemplate {
     virtual void init() {}
     virtual void shutdown() {}
 
-    virtual void processInput() = 0;
-    virtual void update() = 0;
+    virtual void processInput(float dt) = 0;
+    virtual void update(float dt) = 0;
     virtual void render() = 0;
 
     bool isRunning = true;

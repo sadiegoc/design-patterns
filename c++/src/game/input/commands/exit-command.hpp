@@ -11,7 +11,11 @@ class ExitCommand : public Command {
   public:
     ExitCommand(EventBus& b) : bus(b) {}
 
-    void execute() override {
+    void onPressed() override {
       bus.notify({ EventType::Quit });
     }
+
+    void onReleased() override {}
+
+    void onHeld(float dt) override {}
 };

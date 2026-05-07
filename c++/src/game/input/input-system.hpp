@@ -2,11 +2,15 @@
 
 #include <vector>
 #include <iostream>
-#include "enums/keys.hpp"
+#include "input-event.hpp"
 
 class InputSystem {
   private:
     InputSystem() {}
+
+    std::map<Key, bool> currentKeys;
+    std::map<Key, bool> previousKeys;
+    std::map<Key, float> holdTimes;
 
     Key mapKey(int raw) {
       char c = std::tolower(raw);
@@ -31,17 +35,37 @@ class InputSystem {
       return instance;
     }
 
-    std::vector<Key> pollEvents() {
-      std::vector<Key> keys;
+    void setKeyPressed(Key key, bool pressed) {
+      currentKeys[key] = pressed;
+    }
 
-      int raw = std::cin.get();
+    std::vector<InputEvent> pollEvents(float dt) {
+      std::vector<InputEvent> events;
 
-      Key key = mapKey(raw);
+      for (auto& [key, pressed] : currentKeys) {
+        bool wasPressed = previousKeys[key];
 
-      if (key != Key::KEY_UNKNOWN) {
-        keys.push_back(key);
+        if (pressed && !wasPressed) {
+          holdTimes[key] = 0.f;
+
+          events.push_back({ key, InputEventType::Pressed, 0.f });
+        }
+
+        else if (pressed && wasPressed) {
+          holdTimes[key] += dt;
+
+          events.push_back({ key, InputEventType::Held, holdTimes[key] });
+        }
+
+        else if (!pressed && wasPressed) {
+          events.push_back({ key, InputEventType::Released, holdTimes[key] });
+
+          holdTimes[key] = 0.f;
+        }
       }
 
-      return keys;
+      previousKeys = currentKeys;
+
+      return events;
     }
 };

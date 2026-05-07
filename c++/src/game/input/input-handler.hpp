@@ -16,14 +16,26 @@ class InputHandler {
       commands[key] = std::move(cmd);
     }
 
-    void handle() {
+    void handle(float dt) {
       auto& inputSystem = InputSystem::getInstance();
 
-      auto keys = inputSystem.pollEvents();
+      auto events = inputSystem.pollEvents(dt);
 
-      for (auto key : keys) {
-        if (commands.count(key)) {
-          commands[key]->execute();
+      for (auto& event : events) {
+        if (!commands.count(event.key)) continue;
+
+        auto& cmd = commands[event.key];
+
+        switch (event.type) {
+          case InputEventType::Pressed:
+            cmd->onPressed();
+            break;
+          case InputEventType::Released:
+            cmd->onReleased();
+            break;
+          case InputEventType::Held:
+            cmd->onHeld(event.heldTime);
+            break;
         }
       }
     }

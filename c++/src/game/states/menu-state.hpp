@@ -29,11 +29,11 @@ class MenuState : public GameState {
       input.bind(Key::KEY_ENTER, std::make_unique<NavigateEnterCommand>(menu));
     }
 
-    void handleInput() override {
-      input.handle();
+    void handleInput(float dt) override {
+      input.handle(dt);
     }
 
-    void update() override {
+    void update(float dt) override {
       // Nothing
     }
 

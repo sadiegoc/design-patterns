@@ -11,7 +11,11 @@ class GameStartCommand : public Command {
   public:
     GameStartCommand(EventBus b) : bus(b) {}
 
-    void execute() override {
+    void onPressed() override {
       bus.notify({ EventType::ChangeState, StateType::Playing });
     }
+
+    void onReleased() override {}
+
+    void onHeld(float dt) override {}
 };

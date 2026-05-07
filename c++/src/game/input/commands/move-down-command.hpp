@@ -4,14 +4,20 @@
 
 #include "../../entities/player.hpp"
 
-class MoveDownCommand : public Command {
+class startMoveDownCommand : public Command {
   private:
     Player& player;
 
   public:
-    MoveDownCommand(Player& p) : player(p) {}
+    startMoveDownCommand(Player& p) : player(p) {}
 
-    void execute() override {
-      player.moveDown();
+    void onPressed() override {
+      player.startMoveDown();
     }
+
+    void onReleased() override {
+      player.stopMoveDown();
+    }
+
+    void onHeld(float dt) override {}
 };
