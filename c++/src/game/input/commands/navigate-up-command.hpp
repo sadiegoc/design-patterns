@@ -12,7 +12,7 @@ class NavigateUpCommand : public Command {
     NavigateUpCommand(Menu& m) : menu(m) {}
 
     void onPressed() override {
-      menu.startMoveUp();
+      menu.navigateUp();
     }
 
     void onReleased() override {}

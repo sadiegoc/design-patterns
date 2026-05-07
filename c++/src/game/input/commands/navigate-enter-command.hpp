@@ -12,7 +12,7 @@ class NavigateEnterCommand : public Command {
     NavigateEnterCommand(Menu& m) : menu(m) {}
 
     void onPressed() override {
-      std::cout << menu.getCurrent() << std::endl;
+      menu.select();
     }
 
     void onReleased() override {}

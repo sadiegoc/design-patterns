@@ -11,12 +11,16 @@ class Menu {
   public:
     Menu(std::vector<std::string> items) : options(std::move(items)) {}
 
-    void startMoveUp() {
+    void navigateUp() {
       selected = (selected - 1 + options.size()) % options.size();
     }
 
-    void startMoveDown() {
+    void navigateDown() {
       selected = (selected + 1) % options.size();
+    }
+
+    void select() {
+      std::cout << "Select: " << options[selected] << std::endl;
     }
 
     int getSelected() const {
