@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "iterator": "ts-node ./src/behavioral/iterator/index.ts",
     "chain-of-responsibility": "ts-node ./src/behavioral/chain-of-responsibility/index.ts",
     "mediator": "ts-node ./src/behavioral/mediator/index.ts",
     "state": "ts-node ./src/behavioral/state/index.ts",
