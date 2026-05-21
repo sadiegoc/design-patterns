@@ -2,21 +2,25 @@
 
 #include "command.hpp"
 
-#include "../../entities/player.hpp"
+#include "../../ecs/ecs.hpp"
+#include "../../ecs/components/input.hpp"
 
-class startMoveDownCommand : public Command {
+class MoveDownCommand : public Command {
   private:
-    Player& player;
+    ECS& ecs;
+    Entity& player;
 
   public:
-    startMoveDownCommand(Player& p) : player(p) {}
+    MoveDownCommand(ECS& e, Entity& p) : ecs(e), player(p) {}
 
     void onPressed() override {
-      player.startMoveDown();
+      auto& input = ecs.GetComponent<Input>(player);
+      input.down = true;
     }
 
     void onReleased() override {
-      player.stopMoveDown();
+      auto& input = ecs.GetComponent<Input>(player);
+      input.down = false;
     }
 
     void onHeld(float dt) override {}

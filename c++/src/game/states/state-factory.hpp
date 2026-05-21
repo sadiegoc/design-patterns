@@ -6,14 +6,16 @@
 #include "playing-state.hpp"
 #include "menu-state.hpp"
 #include "../ui/menu.hpp"
-#include "../entities/player.hpp"
 #include "../core/events/event-bus.hpp"
+#include "../ecs/entity.hpp"
+#include "../ecs/ecs.hpp"
 
 class StateFactory {
   public:
     static std::unique_ptr<GameState> create(
       StateType type,
-      Player& player,
+      Entity& player,
+      ECS& ecs,
       EventBus& bus,
       Menu& menu
     ) {

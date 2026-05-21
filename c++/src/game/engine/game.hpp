@@ -5,27 +5,32 @@
 #include "game-template.hpp"
 
 #include "../core/events/event-bus.hpp"
-
-#include "../entities/player.hpp"
 #include "../ui/menu.hpp"
-
 #include "../states/state-factory.hpp"
 #include "../states/game-state.hpp"
 
-#include "../characters/factories/character-registry.hpp"
-#include "../characters/loaders/character-loader.hpp"
-#include "../entities/player.hpp"
+#include "../ecs/ecs.hpp"
+#include "../ecs/components/health.hpp"
+#include "../ecs/components/position.hpp"
+#include "../ecs/components/price.hpp"
+#include "../ecs/components/sprite.hpp"
+#include "../ecs/components/stock.hpp"
+#include "../ecs/components/velocity.hpp"
+#include "../ecs/components/input.hpp"
+#include "../ecs/components/movement-speed.hpp"
 
 class Game : public GameTemplate {
   private:
     CharacterRegistry registry;
     std::unique_ptr<Menu> menu;
-    std::unique_ptr<Player> player;
+    Entity player;
     std::unique_ptr<GameState> state;
     EventBus eventBus;
+    ECS ecs;
 
   private:
     void init() override {
+      this->setupECS();
       this->setupPlayer();
       this->setupMenu();
       this->setupEventBus();
@@ -42,9 +47,25 @@ class Game : public GameTemplate {
       });
     }
 
+    void setupECS() {
+      ecs.RegisterComponent<Health>();
+      ecs.RegisterComponent<Position>();
+      ecs.RegisterComponent<Price>();
+      ecs.RegisterComponent<Sprite>();
+      ecs.RegisterComponent<Stock>();
+      ecs.RegisterComponent<Velocity>();
+      ecs.RegisterComponent<Input>();
+      ecs.RegisterComponent<MovementSpeed>();
+    }
+
     void setupPlayer() {
-      CharacterLoader::load(registry);
-      player = std::make_unique<Player>(registry.spawn(CharacterType::Warrior));
+      player = ecs.CreateEntity();
+
+      ecs.AddComponent(player, Position{10, 20});
+      ecs.AddComponent(player, Health{100, 100});
+      ecs.AddComponent(player, Velocity{10, 10});
+      ecs.AddComponent(player, MovementSpeed{100});
+      ecs.AddComponent(player, Sprite{TextureId::Player});
     }
 
     void setupState() {
@@ -64,7 +85,8 @@ class Game : public GameTemplate {
     void changeState(StateType type) {
       state = StateFactory::create(
         type,
-        *player,
+        player,
+        ecs,
         eventBus,
         *menu
       );

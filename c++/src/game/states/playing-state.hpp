@@ -3,7 +3,7 @@
 #include "../core/events/event-bus.hpp"
 
 #include "game-state.hpp"
-#include "../entities/player.hpp"
+#include "../ecs/entity.hpp"
 
 #include "../input/enums/keys.hpp"
 #include "../input/input-handler.hpp"
@@ -17,17 +17,18 @@
 
 class PlayingState : public GameState {
   private:
-    Player& player;
+    Entity& player;
+    ECS& ecs;
     InputHandler input;
     EventBus& bus;
 
   public:
-    PlayingState(Player& p, EventBus& b) : player(p), bus(b) {
+    PlayingState(Entity& p, ECS& e, EventBus& b) : player(p), ecs(e), bus(b) {
       input.bind(Key::KEY_P, std::make_unique<GamePauseCommand>(bus));
-      input.bind(Key::KEY_W, std::make_unique<startMoveUpCommand>(player));
-      input.bind(Key::KEY_S, std::make_unique<startMoveDownCommand>(player));
-      input.bind(Key::KEY_A, std::make_unique<startMoveLeftCommand>(player));
-      input.bind(Key::KEY_D, std::make_unique<startMoveRightCommand>(player));
+      input.bind(Key::KEY_W, std::make_unique<MoveUpCommand>(ecs, player));
+      input.bind(Key::KEY_S, std::make_unique<MoveDownCommand>(ecs, player));
+      input.bind(Key::KEY_A, std::make_unique<MoveLeftCommand>(ecs, player));
+      input.bind(Key::KEY_D, std::make_unique<MoveRightCommand>(ecs, player));
       input.bind(Key::KEY_J, std::make_unique<AttackCommand>(player));
       input.bind(Key::KEY_SPACE, std::make_unique<JumpCommand>(player));
     }
