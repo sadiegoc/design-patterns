@@ -26,7 +26,8 @@
     "factory-method": "ts-node ./src/creational/factory-method/index.ts",
     "builder": "ts-node ./src/creational/builder/index.ts",
     "builder-01": "ts-node ./src/creational/builder/exercises/01/index.ts",
-    "prototype": "ts-node ./src/creational/prototype/index.ts"
+    "prototype": "ts-node ./src/creational/prototype/index.ts",
+    "date-builder": "ts-node ./src/playground/date-builder/index.ts"
   },
   "author": "",
   "license": "ISC",
@@ -43,6 +44,7 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
+    "dayjs": "^1.11.21",
     "validator": "^13.15.26"
   }
 }
