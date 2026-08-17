@@ -24,6 +24,7 @@
     "singleton-03": "ts-node ./src/creational/singleton/exercises/03/index.ts",
     "abstract-factory": "ts-node ./src/creational/abstract-factory/index.ts",
     "factory-method": "ts-node ./src/creational/factory-method/index.ts",
+    "factory-method-01": "ts-node ./src/creational/factory-method/exercises/01/index.ts",
     "builder": "ts-node ./src/creational/builder/index.ts",
     "builder-01": "ts-node ./src/creational/builder/exercises/01/index.ts",
     "prototype": "ts-node ./src/creational/prototype/index.ts",
